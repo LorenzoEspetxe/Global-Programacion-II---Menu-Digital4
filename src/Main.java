@@ -87,7 +87,10 @@ public class Main {
         muzza8Porciones.agregarDetalleInsumos(detallePizzaMuzzaMuzzarella);
         muzza8Porciones.agregarImagen(imagenPizzaMuzza);
 
-        // Instanciamos Argentina, Mendoza, Godoy Cruz.
+        // System.out.println(muzza8Porciones);
+        // System.out.println(papasMedianas);
+
+        // Instanciamos un domicilio con Argentina, Mendoza, Godoy Cruz.
         Pais pais = new Pais();
         pais.setNombre("Argentina");
 
@@ -104,6 +107,8 @@ public class Main {
         domicilio.setNumero(123);
         domicilio.setCodigoPostal(5501);
         domicilio.setLocalidad(localidad);
+
+        // System.out.println(domicilio);
 
         // Instanaciamos empresa, con 2 sucursales.
         Empresa empresa = new Empresa();
@@ -139,6 +144,9 @@ public class Main {
         cliente.setFechaNacimiento(LocalDate.of(1990, 5, 15));
         cliente.setUsuario(usuario);
 
+        // System.out.println(cliente);
+        // System.out.println(usuario);
+
         // === PEDIDO Y DETALLES ===
         DetallePedido detPedido1 = new DetallePedido();
         detPedido1.setCantidad(1);
@@ -154,19 +162,22 @@ public class Main {
         pedido.setFormaPago(FormaPago.EFECTIVO);
         pedido.setFechaPedido(LocalDate.now());
         pedido.setSucursal(sucursal1);
-        pedido.setDetallePedido(detPedido1);
+        pedido.agregarDetallePedido(detPedido1);
+
+
 
         // === FACTURA ===
         Factura factura = new Factura();
         factura.setFechaFacturacion(LocalDate.now());
         factura.setMpPaymentId(111222333);
         factura.setMpMerchantOrderId(987654321);
-        factura.setMyPreferenceId("pref123");
-        factura.setMyPaymentType("credit_card");
+        factura.setMpPreferenceId("pref123");
+        factura.setMpPaymentType("credit_card");
         factura.setFormaPago(FormaPago.MERCADOPAGO);
         factura.setTotalVenta(7500);
 
         pedido.setFactura(factura);
+        // System.out.println(pedido);
 
         // === PROMOCIONES ===
         Promocion promo1 = new Promocion();
@@ -191,6 +202,25 @@ public class Main {
 
         sucursal1.addPromocion(promo1);
         sucursal1.addPromocion(promo2);
+
+        // Instanciar todas las categorias:
+        Categoria bebidas = new Categoria("Bebidas");
+        Categoria alimentos = new Categoria("Alimentos");
+        Categoria bebidasAlcoholicas = new Categoria("Bebidas alcoholicas");
+        Categoria sacks = new Categoria("Snacks");
+        Categoria pizzas = new Categoria("Pizzas");
+
+        // Establecemos las relaciones de subcategrias
+        bebidas.addCategoria(bebidasAlcoholicas);
+        alimentos.addCategoria(sacks);
+
+        // Pizzas es subcategoria de Alimentos
+        alimentos.addCategoria(pizzas);
+
+        // System.out.println(bebidas.getDenominacion() + " tiene subcategorias: " + bebidas.getSetDeSubCategorias());
+        // System.out.println(alimentos.getDenominacion() + " tiene subcategorias: " + alimentos.getSetDeSubCategorias());
+
+
 
     }
 }

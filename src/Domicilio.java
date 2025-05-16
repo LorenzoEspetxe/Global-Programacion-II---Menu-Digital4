@@ -32,4 +32,9 @@ public class Domicilio {
         this.localidad = localidad;
     }
 
+    @Override
+    public String toString() {
+        return "Domicilio: " + calle + " " + numero + ", " +localidad + ". " + "Codigo Postal: " + codigoPostal + ".";
+    }
+
 }

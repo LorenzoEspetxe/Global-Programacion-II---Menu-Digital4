@@ -25,4 +25,9 @@ public class DetallePedido {
     public void setArticulo(Articulo articulo) {
         this.articulo = articulo;
     }
+
+    @Override
+    public String toString() {
+        return "DetallePedido: " + articulo.getNombre() + " x " + cantidad + " / SubTotal=" + subTotal;
+    }
 }

@@ -75,4 +75,8 @@ public class Cliente {
         if(pedidos.contains(pedido)) pedidos.remove(pedido);
     }
 
+    @Override
+    public String toString() {
+        return "Cliente: " + nombre + " " + apellido + " - Usuario: " + usuario;
+    }
 }

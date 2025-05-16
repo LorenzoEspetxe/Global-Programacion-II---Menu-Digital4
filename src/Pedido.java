@@ -1,5 +1,7 @@
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Pedido {
 
@@ -14,7 +16,7 @@ public class Pedido {
     private Sucursal sucursal;
     private Domicilio domicilio;
     private Factura factura;
-    private DetallePedido detallePedido;
+    private Set<DetallePedido> detallesPedido;
 
     public Pedido(){}
 
@@ -28,8 +30,8 @@ public class Pedido {
         this.formaPago = formaPago;
         this.sucursal = sucursal;
         this.domicilio = domicilio;
-        this.factura = factura;
-        this.detallePedido = detallePedido;
+        // this.factura = factura;                   Los sacamos por que no necesariamente pas el pedido.
+        // this.detallePedido = detallePedido;
     }
 
     // setter
@@ -73,8 +75,19 @@ public class Pedido {
         this.factura = factura;
     }
 
-    public void setDetallePedido(DetallePedido detallePedido) {
-        this.detallePedido = detallePedido;
+    public void agregarDetallePedido(DetallePedido detalle) {
+        if (detallesPedido == null) detallesPedido = new HashSet<>();
+        this.detallesPedido.add(detalle);
     }
+
+    public Set<DetallePedido> getDetallesPedido() {
+        return detallesPedido;
+    }
+
+    @Override
+    public String toString() {
+        return "Pedido: " + factura + " - " + estado + " - " +  getDetallesPedido();
+    }
+
 
 }

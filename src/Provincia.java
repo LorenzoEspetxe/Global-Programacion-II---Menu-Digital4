@@ -20,4 +20,8 @@ public class Provincia {
         this.pais = pais;
     }
 
+    @Override
+    public String toString() {
+        return nombre + ", " + pais;
+    }
 }

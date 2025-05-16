@@ -5,8 +5,8 @@ public class Factura {
      private LocalDate fechaFacturacion;
      private int mpPaymentId;
      private int mpMerchantOrderId;
-     private String myPreferenceId;
-     private String myPaymentType;
+     private String mpPreferenceId;
+     private String mpPaymentType;
      private FormaPago formaPago;
      private double totalVenta;
 
@@ -16,8 +16,8 @@ public class Factura {
         this.fechaFacturacion = fechaFacturacion;
         this.mpPaymentId = mpPaymentId;
         this.mpMerchantOrderId = mpMerchantOrderId;
-        this.myPreferenceId = myPreferenceId;
-        this.myPaymentType = myPaymentType;
+        this.mpPreferenceId = myPreferenceId;
+        this.mpPaymentType = myPaymentType;
         this.formaPago = formaPago;
         this.totalVenta = totalVenta;
     }
@@ -35,12 +35,12 @@ public class Factura {
         this.mpMerchantOrderId = mpMerchantOrderId;
     }
 
-    public void setMyPreferenceId(String myPreferenceId) {
-        this.myPreferenceId = myPreferenceId;
+    public void setMpPreferenceId(String mpPreferenceId) {
+        this.mpPreferenceId = mpPreferenceId;
     }
 
-    public void setMyPaymentType(String myPaymentType) {
-        this.myPaymentType = myPaymentType;
+    public void setMpPaymentType(String mpPaymentType) {
+        this.mpPaymentType = mpPaymentType;
     }
 
     public void setFormaPago(FormaPago formaPago) {
@@ -51,4 +51,8 @@ public class Factura {
         this.totalVenta = totalVenta;
     }
 
+    @Override
+    public String toString() {
+        return "Factura Nro " + mpPaymentId;
+    }
 }
