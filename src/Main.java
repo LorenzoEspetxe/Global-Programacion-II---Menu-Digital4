@@ -1,3 +1,6 @@
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
@@ -76,7 +79,6 @@ public class Main {
         papasMedianas.agregarDetalleInsumos(detallePapaFritaSal);
         papasMedianas.agregarImagen(imagenPapasFritas);
 
-
         ArticuloManufacturado muzza8Porciones = new ArticuloManufacturado("Pizza Muzzarella (Grande)", unidadUnidades, 20); // Estimado 20 minutos
         muzza8Porciones.setDescripcion("Clásica pizza de muzzarella con salsa de tomate.");
         muzza8Porciones.setPreparacion("Estirar masa, agregar salsa y muzzarella, hornear.");
@@ -85,6 +87,110 @@ public class Main {
         muzza8Porciones.agregarDetalleInsumos(detallePizzaMuzzaMuzzarella);
         muzza8Porciones.agregarImagen(imagenPizzaMuzza);
 
+        // Instanciamos Argentina, Mendoza, Godoy Cruz.
+        Pais pais = new Pais();
+        pais.setNombre("Argentina");
+
+        Provincia provincia = new Provincia();
+        provincia.setNombre("Mendoza");
+        provincia.setPais(pais);
+
+        Localidad localidad = new Localidad();
+        localidad.setNombre("Godoy Cruz");
+        localidad.setProvincia(provincia);
+
+        Domicilio domicilio = new Domicilio();
+        domicilio.setCalle("San Martin");
+        domicilio.setNumero(123);
+        domicilio.setCodigoPostal(5501);
+        domicilio.setLocalidad(localidad);
+
+        // Instanaciamos empresa, con 2 sucursales.
+        Empresa empresa = new Empresa();
+        empresa.setNombre("Buen Sabor");
+        empresa.setRazonSocial("Buen Sabor S.A.");
+        empresa.setCuil(306789123);
+
+        Sucursal sucursal1 = new Sucursal();
+        sucursal1.setNombre("Sucursal Centro");
+        sucursal1.setHorarioApertura(LocalTime.of(9, 0));
+        sucursal1.setHorarioCierre(LocalTime.of(22, 0));
+        sucursal1.setDomicilio(domicilio);
+
+        Sucursal sucursal2 = new Sucursal();
+        sucursal2.setNombre("Sucursal Sur");
+        sucursal2.setHorarioApertura(LocalTime.of(10, 0));
+        sucursal2.setHorarioCierre(LocalTime.of(23, 0));
+        sucursal2.setDomicilio(domicilio);
+
+        empresa.addSucursal(sucursal1);
+        empresa.addSucursal(sucursal2);
+
+        // Instanciamos un usuario y cliente.
+        Usuario usuario = new Usuario();
+        usuario.setId("auth0|abc123");
+        usuario.setUsername("juan_p");
+
+        Cliente cliente = new Cliente();
+        cliente.setNombre("Juan");
+        cliente.setApellido("Perez");
+        cliente.setTelefono("2611234567");
+        cliente.setEmail("juanp@gmail.com");
+        cliente.setFechaNacimiento(LocalDate.of(1990, 5, 15));
+        cliente.setUsuario(usuario);
+
+        // === PEDIDO Y DETALLES ===
+        DetallePedido detPedido1 = new DetallePedido();
+        detPedido1.setCantidad(1);
+        detPedido1.setSubTotal(2500);
+        detPedido1.setArticulo(papasMedianas);
+
+        Pedido pedido = new Pedido();
+        pedido.setHoraEstimadaFinalizacion(LocalTime.of(20, 30));
+        pedido.setTotal(7500);
+        pedido.setTotalCosto(6000);
+        pedido.setEstado(Estado.PENDIENTE);
+        pedido.setTipoEnvio(TipoEnvio.DELIVERY);
+        pedido.setFormaPago(FormaPago.EFECTIVO);
+        pedido.setFechaPedido(LocalDate.now());
+        pedido.setSucursal(sucursal1);
+        pedido.setDetallePedido(detPedido1);
+
+        // === FACTURA ===
+        Factura factura = new Factura();
+        factura.setFechaFacturacion(LocalDate.now());
+        factura.setMpPaymentId(111222333);
+        factura.setMpMerchantOrderId(987654321);
+        factura.setMyPreferenceId("pref123");
+        factura.setMyPaymentType("credit_card");
+        factura.setFormaPago(FormaPago.MERCADOPAGO);
+        factura.setTotalVenta(7500);
+
+        pedido.setFactura(factura);
+
+        // === PROMOCIONES ===
+        Promocion promo1 = new Promocion();
+        promo1.setDenominacion("2x1");
+        promo1.setFecheDesde(LocalDate.now().minusDays(5));
+        promo1.setFechaHasta(LocalDate.now().plusDays(5));
+        promo1.setHoraDesde(LocalTime.of(18, 0));
+        promo1.setHoraHasta(LocalTime.of(21, 0));
+        promo1.setDescripcionDescuento("2x1 en pizzas");
+        promo1.setPrecioPromocional(2000);
+        promo1.setTipoPromocion(TipoPromocion.HAPPYHOUR);
+
+        Promocion promo2 = new Promocion();
+        promo2.setDenominacion("Combo Almuerzo");
+        promo2.setFecheDesde(LocalDate.now().minusDays(2));
+        promo2.setFechaHasta(LocalDate.now().plusDays(2));
+        promo2.setHoraDesde(LocalTime.of(12, 0));
+        promo2.setHoraHasta(LocalTime.of(15, 0));
+        promo2.setDescripcionDescuento("Pizza + bebida");
+        promo2.setPrecioPromocional(3000);
+        promo2.setTipoPromocion(TipoPromocion.PROMOCION1);
+
+        sucursal1.addPromocion(promo1);
+        sucursal1.addPromocion(promo2);
 
     }
 }
