@@ -1,7 +1,7 @@
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Promocion {
 
@@ -14,8 +14,8 @@ public class Promocion {
     private double precioPromocional;
     private TipoPromocion tipoPromocion;
 
-    private List<Imagen> imagenes;
-    private List<Articulo> articulos;
+    private Set<Imagen> imagenes;
+    private Set<Articulo> articulos;
 
     public Promocion(){}
 
@@ -66,7 +66,7 @@ public class Promocion {
     // metodos
 
     public void addImagen(Imagen imagen){
-        if(imagenes == null) imagenes = new ArrayList<>();
+        if(imagenes == null) imagenes = new HashSet<>();
         imagenes.add(imagen);
     }
 
@@ -75,7 +75,7 @@ public class Promocion {
     }
 
     public void addArticulo(Articulo articulo){
-        if(articulos == null) articulos = new ArrayList<>();
+        if(articulos == null) articulos = new HashSet<>();
         articulos.add(articulo);
     }
 

@@ -1,6 +1,6 @@
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Sucursal {
 
@@ -9,8 +9,8 @@ public class Sucursal {
     private LocalTime horarioCierre;
 
     private Domicilio domicilio;
-    private List<Promocion> promociones;
-    private List<Categoria> categorias;
+    private Set<Promocion> promociones;
+    private Set<Categoria> categorias;
 
     public Sucursal(){}
 
@@ -41,7 +41,7 @@ public class Sucursal {
     // metodos
 
     public void addPromocion(Promocion promocion){
-        if(promociones == null) promociones = new ArrayList<>();
+        if(promociones == null) promociones = new HashSet<>();
         promociones.add(promocion);
     }
 
@@ -50,7 +50,7 @@ public class Sucursal {
     }
 
     public void addCategoria(Categoria categoria){
-        if(categorias == null) categorias = new ArrayList<>();
+        if(categorias == null) categorias = new HashSet<>();
         categorias.add(categoria);
     }
 

@@ -1,5 +1,5 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Empresa {
 
@@ -7,7 +7,7 @@ public class Empresa {
     private String razonSocial;
     private int cuil;
 
-    private List<Sucursal> sucursales;
+    private Set<Sucursal> sucursales;
 
     public Empresa(){}
 
@@ -32,7 +32,7 @@ public class Empresa {
 
     // metodos
     public void addSucursal(Sucursal sucursal){
-        if(sucursales == null) sucursales = new ArrayList<>();
+        if(sucursales == null) sucursales = new HashSet<>();
         sucursales.add(sucursal);
     }
 

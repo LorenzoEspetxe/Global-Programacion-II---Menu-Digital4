@@ -1,6 +1,6 @@
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Cliente {
 
@@ -12,8 +12,8 @@ public class Cliente {
 
     private Usuario usuario;
     private ImagenCliente imagenCliente;
-    private List<Domicilio> domicilios;
-    private List<Pedido> pedidos;
+    private Set<Domicilio> domicilios;
+    private Set<Pedido> pedidos;
 
     public Cliente(){}
 
@@ -58,7 +58,7 @@ public class Cliente {
 
     // metodos
     public void addDomicilio(Domicilio domicilio){
-        if(domicilios == null) domicilios = new ArrayList<>();
+        if(domicilios == null) domicilios = new HashSet<>();
         domicilios.add(domicilio);
     }
 
@@ -67,7 +67,7 @@ public class Cliente {
     }
 
     public void addPedido(Pedido pedido){
-        if(pedidos == null) pedidos = new ArrayList<>();
+        if(pedidos == null) pedidos = new HashSet<>();
         pedidos.add(pedido);
     }
 
